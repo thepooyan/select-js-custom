@@ -31,11 +31,11 @@
             font-size: 1.3em;
         }
 
-        &:focus + i + ul {
+        &:focus~ul:not(:empty) {
             visibility: visible;
             opacity: 100;
-        top: calc(100% + 1em);
-    }
+            top: calc(100% + 1em);
+        }
     }
 
     ul {
@@ -73,6 +73,7 @@
                 align-items: center;
                 margin-left: .5em;
             }
+
             &:hover {
                 background-color: rgb(243, 243, 243);
             }
@@ -83,10 +84,9 @@
             }
         }
 
-        > span {
+        >span {
             display: block;
             text-align: center;
         }
-
     }
 }

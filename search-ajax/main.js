@@ -3,20 +3,21 @@ let search = document.getElementById('search');
 if (search) {
     let input = search.querySelector('input');
     let searchContent = search.querySelector('ul');
-    let noContentText = searchContent.querySelector('span').innerHTML;
 
-    input.onkeydown = inputTypeHandler;
+    input.onkeyup = inputTypeHandler;
 
     let timeout;
     function inputTypeHandler(e) {
         clearTimeout(timeout);
-        timeout = setTimeout(() => {
-            if (e.target.value) {
+        if (e.target.value.length > 1) {
+            timeout = setTimeout(() => {
                 searchFor(e.target.value).then(showSearchResult)
-            } else {
-                noResult(noContentText);
+            }, 500);
+        } else {
+            while (searchContent.firstChild) {
+                searchContent.removeChild(searchContent.firstChild);
             }
-        }, 500);
+        }
     }
     async function searchFor(text) {
         let result;
@@ -45,11 +46,15 @@ if (search) {
             fragment.appendChild(a);
         })
 
-        searchContent.replaceChildren(fragment);
+        addOrReplaceChildern(searchContent, fragment)
     }
-    function noResult(text = 'نتیجه ای یافت نشد! :/') {
+    function noResult() {
         let span = document.createElement('span');
-        span.innerText = text;
+        span.innerText = 'متاسفانه نتیجه ای یافت نشد! :/';
         searchContent.replaceChildren(span);
+    }
+    function addOrReplaceChildern(element, child) {
+        if (element.childElementCount > 0) element.replaceChildren(child)
+        else element.appendChild(child)
     }
 }
