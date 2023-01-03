@@ -13,11 +13,7 @@ if (search) {
             timeout = setTimeout(() => {
                 searchFor(e.target.value).then(showSearchResult)
             }, 500);
-        } else {
-            while (searchContent.firstChild) {
-                searchContent.removeChild(searchContent.firstChild);
-            }
-        }
+        } 
     }
     async function searchFor(text) {
         let result;
