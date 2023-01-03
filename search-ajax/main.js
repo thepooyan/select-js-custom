@@ -39,7 +39,7 @@ if (search) {
         object.forEach(item => {
             let a = document.createElement('a');
             a.href = item.href;
-            a.innerText = item.category;
+            a.innerHTML = `نتیجه در دسته <span>${item.category}</span>`;
             a.dataset.count = item.count;
 
             fragment.appendChild(a);
