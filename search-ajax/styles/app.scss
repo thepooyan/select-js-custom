@@ -73,6 +73,9 @@
                 align-items: center;
                 margin-left: .5em;
             }
+            &::after {
+                content: ' برای ' attr(data-search);
+            }
 
             &:hover {
                 background-color: rgb(243, 243, 243);

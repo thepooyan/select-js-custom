@@ -31,9 +31,11 @@ if (search) {
                 result = res;
             }
         })
+        result.text = text;
         return result
     }
     function showSearchResult(object) {
+        
         if (object.length <= 1) return noResult();
         let fragment = document.createDocumentFragment();
 
@@ -42,6 +44,7 @@ if (search) {
             a.href = item.href;
             a.innerHTML = `نتیجه در دسته <span>${item.category}</span>`;
             a.dataset.count = item.count;
+            a.dataset.search = object.text;
 
             fragment.appendChild(a);
         })
